@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Android_Activity_5_database.Views.CoursePage"
+             Title="CoursePage">
+    <Grid Padding="5" RowSpacing="1" ColumnSpacing="1">
+
+        <Grid.RowDefinitions>
+            <!-- Define the row heights for the different elements -->
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <!-- Entry field for entering the new course name -->
+        <Entry x:Name="newCourse"
+               Placeholder="Enter Course Name"/>
+
+        <!-- Entry field for entering the new professor name -->
+        <Entry x:Name="newProfessor"
+               Placeholder="Enter Professor Name"
+               Grid.Row="1" />
+
+        <!-- Entry field for entering the new course credits -->
+        <Entry x:Name="newCredits"
+               Placeholder="Enter Credits"
+               Grid.Row="2" />
+
+        <!-- Button to add a new course -->
+        <Button Text="Add Course"
+                Grid.Row="3"
+                Clicked="OnNewButtonClicked" />
+
+        <!-- Status message label to display feedback or messages -->
+        <Label x:Name="statusMessage"
+               Grid.Row="4" />
+
+        <!-- CollectionView to display the list of courses -->
+        <CollectionView x:Name="courseList" Grid.Row="5">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <!-- Grid to organize the elements within each item -->
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <!-- Define the column widths for the different elements -->
+                            <ColumnDefinition Width="0.2*" />
+                            <ColumnDefinition Width="0.233*" />
+                            <ColumnDefinition Width="0.233*" />
+                            <ColumnDefinition Width="0.233*" />
+                            <ColumnDefinition Width="0.2*" />
+                        </Grid.ColumnDefinitions>
+
+                        <!-- Update Button to edit a course -->
+                        <Button Grid.Column="0" Text="Edit" Clicked="OnUpdateButtonClicked" CommandParameter="{Binding .}" />
+
+                        <!-- Label to display the CourseName -->
+                        <Label Grid.Column="1" Text="{Binding CourseName}" />
+
+                        <!-- Label to display the Professor -->
+                        <Label Grid.Column="2" Text="{Binding Professor}" />
+
+                        <!-- Label to display the Credits -->
+                        <Label Grid.Column="3" Text="{Binding Credits}" />
+
+                        <!-- Delete Button to delete a course -->
+                        <Button Grid.Column="4" Text="Delete" Clicked="OnDeleteButtonClicked" CommandParameter="{Binding .}" />
+
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <!-- Button to get all courses -->
+        <Button Text="Get All Courses"
+                Grid.Row="6"
+                Clicked="OnGetButtonClicked"
+                VerticalOptions="Start" />
+
+    </Grid>
+</ContentPage>
