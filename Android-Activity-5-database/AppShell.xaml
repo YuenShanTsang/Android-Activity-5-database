@@ -3,13 +3,18 @@
     x:Class="Android_Activity_5_database.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:Android_Activity_5_database"
-    Shell.FlyoutBehavior="Disabled">
+    xmlns:local="clr-namespace:Android_Activity_5_database.Views"
+    Shell.FlyoutBehavior="Flyout">
 
     <ShellContent
-        Title="Home"
+        Title="Student"
         ContentTemplate="{DataTemplate local:MainPage}"
         Route="MainPage" />
+
+        <ShellContent
+        Title="Course"
+        ContentTemplate="{DataTemplate local:CoursePage}"
+        Route="CoursePage" />
 
 </Shell>
 

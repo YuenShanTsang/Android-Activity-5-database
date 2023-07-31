@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Android_Activity_5_database.Views.MainPage"
+             Title="MainPage">
+    <Grid Padding="5" RowSpacing="1" ColumnSpacing="1">
+
+        <Grid.RowDefinitions>
+            <!-- Define the row heights for the different elements -->
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <!-- Entry field for entering the new student name -->
+        <Entry x:Name="newStudent"
+               Placeholder="Enter name"/>
+
+        <!-- Entry field for entering the new student email -->
+        <Entry x:Name="newEmail"
+               Placeholder="Enter email"
+               Grid.Row="1" />
+
+        <!-- Entry field for entering the new student address -->
+        <Entry x:Name="newAddress"
+               Placeholder="Enter address"
+               Grid.Row="2" />
+
+        <!-- Button to add a new student -->
+        <Button Text="Add Student"
+                Grid.Row="3"
+                Clicked="OnNewButtonClicked" />
+
+        <!-- Status message label to display feedback or messages -->
+        <Label x:Name="statusMessage"
+               Grid.Row="4" />
+
+        <!-- CollectionView to display the list of students -->
+        <CollectionView x:Name="studentList" Grid.Row="5">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <!-- Grid to organize the elements within each item -->
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <!-- Define the column widths for the different elements -->
+                            <ColumnDefinition Width="0.2*" />
+                            <ColumnDefinition Width="0.233*" />
+                            <ColumnDefinition Width="0.233*" />
+                            <ColumnDefinition Width="0.233*" />
+                            <ColumnDefinition Width="0.2*" />
+                        </Grid.ColumnDefinitions>
+
+                        <!-- Update Button to edit a student -->
+                        <Button Grid.Column="0" Text="Edit" Clicked="OnUpdateButtonClicked" CommandParameter="{Binding .}" />
+
+                        <!-- Existing Entry fields for displaying and editing student data (Name, Email, Address) -->
+                        <Entry Grid.Column="1" Text="{Binding Name, Mode=TwoWay}" />
+                        <Entry Grid.Column="2" Text="{Binding Email, Mode=TwoWay}" />
+                        <Entry Grid.Column="3" Text="{Binding Address, Mode=TwoWay}" />
+
+                        <!-- Delete Button to delete a student -->
+                        <Button Grid.Column="4" Text="Delete" Clicked="OnDeleteButtonClicked" CommandParameter="{Binding .}" />
+
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <!-- Button to get all students -->
+        <Button Text="Get All Student"
+                Grid.Row="6"
+                Clicked="OnGetButtonClicked"
+                VerticalOptions="Start" />
+
+    </Grid>
+</ContentPage>
